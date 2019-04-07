@@ -1,5 +1,6 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
+var Buffer = require('safer-buffer').Buffer;
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -36,7 +37,6 @@ describe('Api RestFul - Usuarios: ',()=>{
                 expect(obj.clave_activacion).to.be.an("String");
                 expect(obj.api_token_key).to.be.an("String");
                 expect(obj.grupos).to.be.an("Array");
-                expect(obj.permisos).to.be.an("Array");
                 expect(obj.__v).to.be.an("Number");
             }
             
@@ -54,10 +54,8 @@ describe('Api RestFul - Usuarios: ',()=>{
             username: 'username',
             avatar: 'avatar.jpg',
             activo: false,
-            clave_activacion: 'tuClaveDeActivacion',
             api_token_key: 'apiTokenKey',
-            grupos: ['grupo1','grupo2'],
-            permisos: ['permiso1','permiso2']
+            grupos: ['grupo1','grupo2']
         })
         .end( function(err,res){
             // tenemos un codigo de respuesta 200
@@ -91,16 +89,16 @@ describe('Api RestFul - Usuarios: ',()=>{
             expect(usuario.activo).equal(false);
             
             expect(usuario.clave_activacion).to.be.an("String");
-            expect(usuario.clave_activacion).equal('tuClaveDeActivacion');
+            // decodificar la clave de activacion
+            const b = Buffer.from(usuario.clave_activacion, 'base64');
+            expect(b.toString()).to.equal(usuario._id);
+
             
             expect(usuario.api_token_key).to.be.an("String");
             expect(usuario.api_token_key).equal("apiTokenKey");
             
             expect(usuario.grupos).to.be.an("Array");
             expect(usuario.grupos).to.eql(['grupo1','grupo2']);
-            
-            expect(usuario.permisos).to.be.an("Array");
-            expect(usuario.permisos).to.eql(['permiso1','permiso2']);
             
             expect(usuario.__v).to.be.an("Number");
             expect(usuario.__v).equal(0);
@@ -144,16 +142,15 @@ describe('Api RestFul - Usuarios: ',()=>{
             expect(usuario.activo).equal(false);
             
             expect(usuario.clave_activacion).to.be.an("String");
-            expect(usuario.clave_activacion).equal('tuClaveDeActivacion');
-            
+            // decodificar la clave de activacion
+            const b = Buffer.from(usuario.clave_activacion, 'base64');
+            expect(b.toString()).to.equal(usuario._id);
+
             expect(usuario.api_token_key).to.be.an("String");
             expect(usuario.api_token_key).equal("apiTokenKey");
             
             expect(usuario.grupos).to.be.an("Array");
             expect(usuario.grupos).to.eql(['grupo1','grupo2']);
-            
-            expect(usuario.permisos).to.be.an("Array");
-            expect(usuario.permisos).to.eql(['permiso1','permiso2']);
             
             expect(usuario.__v).to.be.an("Number");
             expect(usuario.__v).equal(0);
@@ -163,7 +160,7 @@ describe('Api RestFul - Usuarios: ',()=>{
     });
 
     // obtener usuario
-    it('DELETE /:id Borrar usuario', (done) => {
+    it('GET /:id Borrar usuario', (done) => {
         chai.request(mainURL)
         .get('/usuarios/' + usuario._id.toString())
         .end( function(err,res){
@@ -200,16 +197,15 @@ describe('Api RestFul - Usuarios: ',()=>{
             expect(obj.activo).equal(usuario.activo);
             
             expect(obj.clave_activacion).to.be.an("String");
-            expect(obj.clave_activacion).equal(usuario.clave_activacion);
+            // decodificar la clave de activacion
+            const b = Buffer.from(obj.clave_activacion, 'base64');
+            expect(b.toString()).to.equal(usuario._id);
             
             expect(obj.api_token_key).to.be.an("String");
             expect(obj.api_token_key).equal(usuario.api_token_key);
             
             expect(obj.grupos).to.be.an("Array");
             expect(obj.grupos).to.eql(usuario.grupos);
-            
-            expect(obj.permisos).to.be.an("Array");
-            expect(obj.permisos).to.eql(usuario.permisos);
             
             expect(obj.__v).to.be.an("Number");
             expect(obj.__v).equal(usuario.__v);
@@ -256,16 +252,15 @@ describe('Api RestFul - Usuarios: ',()=>{
             expect(obj.activo).equal(usuario.activo);
             
             expect(obj.clave_activacion).to.be.an("String");
-            expect(obj.clave_activacion).equal(usuario.clave_activacion);
+            // decodificar la clave de activacion
+            const b = Buffer.from(obj.clave_activacion, 'base64');
+            expect(b.toString()).to.equal(usuario._id);
             
             expect(obj.api_token_key).to.be.an("String");
             expect(obj.api_token_key).equal(usuario.api_token_key);
             
             expect(obj.grupos).to.be.an("Array");
             expect(obj.grupos).to.eql(usuario.grupos);
-            
-            expect(obj.permisos).to.be.an("Array");
-            expect(obj.permisos).to.eql(usuario.permisos);
             
             expect(obj.__v).to.be.an("Number");
             expect(obj.__v).equal(usuario.__v);
