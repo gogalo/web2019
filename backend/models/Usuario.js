@@ -3,7 +3,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 var Buffer = require('safer-buffer').Buffer;
 
 // connect
-mongoose.connect('mongodb://localhost/mean-cms', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/mean-cms', { useNewUrlParser: true, useCreateIndex: true });
 
 //Get the default connection
 var db = mongoose.connection;
