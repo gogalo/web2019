@@ -21,7 +21,8 @@ var usuariosController = {
 
                 res.json({
                     success: true,
-                    data: data
+                    data: data,
+                    usuarioAuth: req.usuario
                 });
             }
         });
@@ -43,7 +44,8 @@ var usuariosController = {
                     data.password = ";)";
                     res.json({
                         success: true,
-                        data: data
+                        data: data,
+                        usuarioAuth: req.usuario
                     });
                 }
             });
@@ -62,7 +64,8 @@ var usuariosController = {
                 data.password = ";)";
                 res.json({
                     success: true,
-                    data: data
+                    data: data,
+                    usuarioAuth: req.usuario
                 });
             }
         });
@@ -81,7 +84,8 @@ var usuariosController = {
                 data.password = ";)";
                 res.json({
                     success: true,
-                    data: data
+                    data: data,
+                    usuarioAuth: req.usuario
                 });
             }
         });
@@ -100,7 +104,8 @@ var usuariosController = {
                 data.password = ";)";
                 res.json({
                     success: true,
-                    data: data
+                    data: data,
+                    usuarioAuth: req.usuario
                 });
             }
         });

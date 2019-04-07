@@ -7,8 +7,10 @@ var logger = require('morgan');
 var swaggerUi = require('swagger-ui-express');
 var swaggerDocument = require('./openapi/swagger.json');
 
+// cargar rutas
 var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/usuarios');
+var loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -24,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/v1/usuarios', usuariosRouter);
+app.use('/api/v1/login', loginRouter);
+
 
 // rutas swagger ui
 app.use(

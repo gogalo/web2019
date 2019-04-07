@@ -1,21 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var controller = require('../controllers/usuariosController');
-
+var mdAuth = require('../middelwares/autenticacion');
 
 // GET Listado de usuarios 
-router.get('/', controller.list);
-
-// POST nuevo usuario 
-router.post('/', controller.create);
+router.get('/', mdAuth.verificarToken, controller.list);
 
 // GET Obtener un usuario por id 
-router.get('/:id', controller.get);
+router.get('/:id', mdAuth.verificarToken, controller.get);
+
+// POST nuevo usuario 
+router.post('/', mdAuth.verificarToken ,controller.create);
 
 // PUT Modificar un usuario 
-router.put('/:id', controller.update);
+router.put('/:id', mdAuth.verificarToken, controller.update);
 
 // DELETE Borrar un usuario 
-router.delete('/:id', controller.delete);
+router.delete('/:id', mdAuth.verificarToken, controller.delete);
 
 module.exports = router;

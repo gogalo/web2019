@@ -4,14 +4,40 @@ var Buffer = require('safer-buffer').Buffer;
 
 chai.use(chaiHttp);
 const expect = chai.expect;
-var mainURL= "http://localhost:3000/api/v1";
+var mainURL = "http://localhost:3000/api/v1";
+var loginURL = "http://localhost:3000/api/v1/login";
 var usuario;
+var token;
 
 describe('Api RestFul - Usuarios: ',()=>{
     
+    it('/usuarios debería tener autenticacion', (done) => {
+        chai.request(mainURL)
+        .get('/usuarios')
+        .end(function(err, res) {
+            expect(res).to.have.status(401);
+            done();
+        });
+    });
+
+    it('POST /login Debería poder identificarse', (done) => {
+        chai.request(mainURL)
+        .post('/login')
+        .send({
+            username: 'gogalo',
+            password: '123456'
+        })
+        .end( (err, res ) => {
+            expect(res).to.have.status(200);
+            token = res.body.access_token;
+            done();
+        });
+    });
+
     it('GET / Devuelve listado de usuarios', (done) => {
         chai.request(mainURL)
         .get('/usuarios')
+        .set('Authorization', 'Bearer ' + token)
         .end( function(err,res){
             // tenemos un codigo de respuesta 200
             expect(res).to.have.status(200);
@@ -48,6 +74,7 @@ describe('Api RestFul - Usuarios: ',()=>{
     it('POST / Nuevo Usuario', (done) => {
         chai.request(mainURL)
         .post('/usuarios')
+        .set('Authorization', 'Bearer ' + token)
         .send({
             email: 'tu@email.com',
             password: '123456',
@@ -111,6 +138,7 @@ describe('Api RestFul - Usuarios: ',()=>{
     it('PUT /:id Modificar Usuario', (done) => {
         chai.request(mainURL)
         .put('/usuarios/' + usuario._id.toString())
+        .set('Authorization', 'Bearer ' + token)
         .send({
             email: 'editado@email.com',
         })
@@ -163,6 +191,7 @@ describe('Api RestFul - Usuarios: ',()=>{
     it('GET /:id Borrar usuario', (done) => {
         chai.request(mainURL)
         .get('/usuarios/' + usuario._id.toString())
+        .set('Authorization', 'Bearer ' + token)
         .end( function(err,res){
             // tenemos un codigo de respuesta 200
             expect(res).to.have.status(200);
@@ -218,6 +247,7 @@ describe('Api RestFul - Usuarios: ',()=>{
     it('DELETE /:id Borrar usuario', (done) => {
         chai.request(mainURL)
         .delete('/usuarios/' + usuario._id.toString())
+        .set('Authorization', 'Bearer ' + token)
         .end( function(err,res){
             // tenemos un codigo de respuesta 200
             expect(res).to.have.status(200);
