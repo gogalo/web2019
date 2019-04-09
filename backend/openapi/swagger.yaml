@@ -1,0 +1,333 @@
+swagger: "2.0"
+info:
+  description: "Proyecto curso MEAN Cetic 2019"
+  version: "1.0.0"
+  title: "MEAN CMS API RESTFUL"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/api/v1"
+tags:
+- name: "Usuarios"
+  description: ""
+  externalDocs:
+    description: "+ info"
+    url: "http://localhost:3000/api/v1/usuarios"
+schemes:
+- "http"
+paths:
+  /usuarios:
+    get:
+      tags:
+      - "Usuarios"
+      summary: "Listado de usuarios"
+      description: "Retorna un listado de usuarios"
+      operationId: "getUsuarios"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ApiSuccessArrayResponse"
+        400:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+        401:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+    post:
+      tags:
+      - "Usuarios"
+      summary: "Nuevo Usuario"
+      description: ""
+      operationId: "addUsuario"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto usuario necesario para añadir uno nuevo"
+        required: true
+        schema:
+          $ref: "#/definitions/UsuarioSinId"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ApiSuccessSingleResponse"
+        400:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+        401:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+  /usuarios/{id}:
+    get:
+      tags:
+      - "Usuarios"
+      summary: "Buscar un usuario por id"
+      description: "Retorna un unico usuario por id"
+      operationId: "getUsuarioPorId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Identificador del usuario a buscar"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Usuario"
+        400:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+        401:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+        404:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+    put:
+      tags:
+      - "Usuarios"
+      summary: "Actualizar un usuario existente"
+      description: ""
+      operationId: "updateUsuario"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Identificador del usuario a modificar"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Objeto usuario necesario para poder modificar un usuario existente"
+        required: true
+        schema:
+          $ref: "#/definitions/UsuarioSinId"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Usuario"
+        400:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+        401:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+        404:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+    delete:
+      tags:
+      - "Usuarios"
+      summary: "Borrar un usuario determinado"
+      description: ""
+      operationId: "deleteUsuario"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Identificador del usuario a borrar"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/Usuario"
+        400:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+        401:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+        404:
+          description: "Error"
+          schema:
+            $ref: "#/definitions/ApiErrorResponse"
+definitions:
+  Usuarios:
+    type: "array"
+    items:
+      $ref: "#/definitions/Usuario"
+    xml:
+      name: "Usuarios"
+  Usuario:
+    type: "object"
+    properties:
+      _id:
+        type: "string"
+        example: "1231ADCDGDA3434ASDA23"
+      email:
+        type: "string"
+        example: "tu@email.com"
+      password:
+        type: "string"
+        example: "tucontraseña"
+      username:
+        type: "string"
+        example: "nombreusuario"
+      avatar:
+        type: "string"
+        example: "avatar.jpg"
+      activo:
+        type: "boolean"
+        example: "true | false"
+      clave_activacion:
+        type: "string"
+        example: "dfasdfjafdljafdafjalñdf"
+      api_token_key:
+        type: "string"
+        example: "asdfasjdflñasjdfñlasdiopiocxzixzicxasfjklajfasfd"
+      grupos:
+        type: "array"
+        items:
+          $ref: "#/definitions/Grupo"
+        example: "administrador, editor, lector, etc."
+      permisos:
+        type: "array"
+        items:
+          $ref: "#/definitions/Permiso"
+        example: "[{crear: true, editar: false, ...}]"
+      __v:
+        type: "integer"
+        example: 1
+    xml:
+      name: "Usuario"
+  UsuarioSinId:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+        example: "tu@email.com"
+      password:
+        type: "string"
+        example: "tucontraseña"
+      username:
+        type: "string"
+        example: "nombreusuario"
+      avatar:
+        type: "string"
+        example: "avatar.jpg"
+      activo:
+        type: "boolean"
+        example: "true | false"
+      clave_activacion:
+        type: "string"
+        example: "dfasdfjafdljafdafjalñdf"
+      api_token_key:
+        type: "string"
+        example: "asdfasjdflñasjdfñlasdiopiocxzixzicxasfjklajfasfd"
+      grupos:
+        type: "array"
+        items:
+          $ref: "#/definitions/Grupo"
+        example: "administrador, editor, lector, etc."
+      permisos:
+        type: "array"
+        items:
+          $ref: "#/definitions/Permiso"
+        example: "[{crear: true, editar: false, ...}]"
+    xml:
+      name: 'UsuarioSinId'
+  ApiSuccessArrayResponse:
+    type: "object"
+    properties:
+      success:
+        type: "string"
+        example: "true | false"
+      data:
+        $ref: "#/definitions/Usuarios"
+    xml:
+      name: 'ApiSuccessArrayResponse'
+  ApiSuccessSingleResponse:
+    type: "object"
+    properties:
+      success:
+        type: "string"
+        example: "true | false"
+      data: 
+        $ref: "#/definitions/Usuario"
+    xml:
+      name: 'ApiSuccessSingleResponse'
+  ApiErrorResponse:
+    type: "object"
+    properties:
+      success:
+        type: "string"
+        example: "true | false"
+      error:
+        $ref: "#/definitions/ApiError"
+    xml:
+      name: 'ApiErrorResponse'
+  ApiError:
+    type: "object"
+    properties:
+      code: 
+        type: "string"
+        example: "400 | 401"
+      message:
+        type: "string"
+        example: "Bad request"
+    xml:
+      name: 'ApiErrorResponse'
+  Grupo:
+      type: "object"
+      properties:
+        nombre: 
+          type: "string"
+          example: "administrador | editor | lector | etc."
+      xml:
+        name: 'Grupo'
+  Permiso:
+      type: "object"
+      properties:
+        _id: 
+          type: "string"
+          example: "1321143514351AFADSF31244132"
+        crear: 
+          type: "boolean"
+          example: "true | false"
+        editar: 
+          type: "boolean"
+          example: "true | false"
+        borrar: 
+          type: "boolean"
+          example: "true | false"
+        ver: 
+          type: "boolean"
+          example: "true | false"
+        ver_suscripcion: 
+          type: "boolean"
+          example: "true | false"
+        cambiar_estado_publicacion: 
+          type: "boolean"
+          example: "true | false"
+      xml:
+        name: 'Permiso'
