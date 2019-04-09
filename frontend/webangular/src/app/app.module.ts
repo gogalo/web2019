@@ -9,9 +9,16 @@ import { PublicacionesComponent } from './publicaciones/publicaciones.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { RequestComponent } from './request/request.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { LogoutComponent } from './logout/logout.component';
 const routes: Routes = [{ path: 'usuarios', component: UsuariosComponent },
  { path: 'home', component: HomeComponent },
+ { path: 'logout', component: LogoutComponent },
  { path: 'request', component: RequestComponent },
+ { path: 'registro', component: RegistroComponent },
+ { path: 'login', component: LoginComponent },
  { path: ''
 , redirectTo: '/home', pathMatch: 'full' }, 
 ]; 
@@ -20,7 +27,11 @@ const routes: Routes = [{ path: 'usuarios', component: UsuariosComponent },
     AppComponent,
     UsuariosComponent,
     PublicacionesComponent,
-    HomeComponent
+    HomeComponent,
+    RequestComponent,
+    LoginComponent,
+    RegistroComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +39,8 @@ const routes: Routes = [{ path: 'usuarios', component: UsuariosComponent },
 	AngularImportsModule,
 	BrowserAnimationsModule,
 	RouterModule.forRoot(
- 	appRoutes,
- { enableTracing: true } // <-- debugging purposes only
+ 	routes,
+ // { enableTracing: true } // <-- debugging purposes only
  ) ,
   ],
   providers: [],
