@@ -11,6 +11,8 @@ var swaggerDocument = require('./openapi/swagger.json');
 var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/usuarios');
 var loginRouter = require('./routes/login');
+var registroRouter = require('./routes/registro');
+var cambiarEstadoRouter = require('./routes/cambiarEstado');
 
 var app = express();
 
@@ -25,9 +27,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/v1/usuarios', usuariosRouter);
 app.use('/api/v1/login', loginRouter);
-
+app.use('/api/v1/registro', registroRouter);
+app.use('/api/v1/usuarios', usuariosRouter);
+app.use('/api/v1/usuario/cambiar-estado', cambiarEstadoRouter);
 
 // rutas swagger ui
 app.use(

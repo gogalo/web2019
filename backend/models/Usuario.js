@@ -26,8 +26,8 @@ var UsuarioSchema = new Schema(
         api_token_key: { type: String, required: false, default: '' },
         grupos: { type: Array, required: [true, 'El usuario tiene que tener grupo'] }
     },
-    { 
-        timestamps: { 
+    {
+        timestamps: {
             createdAt: 'fecha_creacion',
             updatedAt: 'fecha_modificacion'
         }
@@ -39,20 +39,21 @@ UsuarioSchema.plugin(uniqueValidator, { message: "El {PATH} tiene que ser único
 
 // PreSave: actualizar valores automaticamente antes de una insercion
 UsuarioSchema.pre('save', function (next) {
-    
-    // codificar en base 64 en node.js, https://nodejs.org/es/docs/guides/buffer-constructor-deprecation/
-    const b = Buffer.from(this._id.toString());
-    this.clave_activacion = b.toString('base64');
-    
+
+    if (this.clave_activacion == '') {
+      // codificar en base 64 en node.js, https://nodejs.org/es/docs/guides/buffer-constructor-deprecation/
+      const b = Buffer.from(this._id.toString());
+      this.clave_activacion = b.toString('base64');
+    }
+
     // decodificar en base 64 en node.js
     // const b2 = Buffer.from(this.clave_activacion, 'base64');
     // console.log('decoded: ', b2.toString());
-    
+
     next();
+    
 });
 
 var Usuario = mongoose.model('usuarios', UsuarioSchema );
 
 module.exports = Usuario;
-
-

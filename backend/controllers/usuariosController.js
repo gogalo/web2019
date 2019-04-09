@@ -5,7 +5,17 @@ var usuariosController = {
 
     // listado de usuarios
     list: function(req, res, next) {
-        Usuario.find({}, function (err, data) {
+
+        // filtros iniciales
+        var query = {};
+
+        // comprobar si tenemos que filtrar por "activo"
+        if(typeof req.query.activo != 'undefined') {
+          query.activo = req.query.activo;
+        }
+
+        Usuario.find(query, function (err, data) {
+
             if (err!=null) {
                 res.json({
                     success: false,
@@ -15,7 +25,7 @@ var usuariosController = {
 
                 var data = data.map(function (usuario) {
                     usuario.password = ";)";
-                    return usuario; 
+                    return usuario;
                 });
 
 
@@ -25,12 +35,13 @@ var usuariosController = {
                     usuarioAuth: req.usuario
                 });
             }
+            
         });
     },
     // nuevo usuario
     create: function(req, res, next) {
         var usuario = new Usuario(req.body);
-        
+
         // codificar la contraseña del usuario (plainPasssword, saltRounds)
         bcrypt.hash(usuario.password, 10).then(function(hash) {
             usuario.password = hash;
@@ -69,7 +80,7 @@ var usuariosController = {
                 });
             }
         });
-        
+
     },
     // actualizar un usuario
     update: function(req, res, next) {
@@ -109,6 +120,13 @@ var usuariosController = {
                 });
             }
         });
+    },
+    testPassword: function(req, res, next) {
+      bcrypt.hash('123456', 10).then(function(hash) {
+          res.json({
+            hash: hash
+          })
+      });
     }
 };
 

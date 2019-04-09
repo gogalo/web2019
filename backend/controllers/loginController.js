@@ -7,7 +7,7 @@ var loginController = {
 
     // login de usuarios
     login: function(req, res, next) {
-        
+
         // recoger datos del body
         data = req.body;
         // buscar el usuario
@@ -37,13 +37,21 @@ var loginController = {
                 });
             }
 
+            // el usuario NO está activo
+            if (!usuario.activo) {
+              return res.status(400).json({
+                  success: false,
+                  error: "Credenciales no validas"
+              });
+            }
+
             usuario.password = ";)";
 
             // generar el token
             var token = jwt.sign(
                 {usuario: usuario}, // payload
                 SEED, // SEED
-                {expiresIn: 14400} // tiempo de expiracion de 4h    
+                {expiresIn: 14400} // tiempo de expiracion de 4h
             );
 
             res.status(200).json({
@@ -51,11 +59,9 @@ var loginController = {
                 data: usuario,
                 access_token: token
             });
-        
 
         });
 
-        
     }
 };
 
