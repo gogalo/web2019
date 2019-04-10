@@ -11,9 +11,9 @@ import { CabeceraComponent } from './shared/cabecera/cabecera.component';
 import { PieComponent } from './shared/pie/pie.component';
 
 
-const routes: Routes = [,
+const routes: Routes = [
  { path: ''
-, redirectTo: '/home', pathMatch: 'full' }, 
+, redirectTo: '/home', pathMatch: 'full' } 
 ]; 
 
 
