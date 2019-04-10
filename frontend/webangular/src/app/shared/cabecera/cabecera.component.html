@@ -1,0 +1,22 @@
+<mat-toolbar> no meter nav </mat-toolbar>
+
+<mat-toolbar>  
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item>Settings</button>
+  <button mat-menu-item>Help</button>
+</mat-menu>
+
+</mat-toolbar>
+<nav>
+	 <ul>
+		 <li><a routerLink="/home" routerLinkActive="active">Inicio</a></li>
+		 <li><a routerLink="/usuarios" routerLinkActive="active">Users</a></li>
+		 <button mat-button>
+    Log in
+    <a routerLink="/login" routerLinkActive="active">Log in</a>
+	</button> 
+		 <li><a routerLink="/registro" routerLinkActive="active">¡Regístrate!</a></li>
+	</ul>
+</nav>
+
+
