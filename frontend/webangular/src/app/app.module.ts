@@ -6,16 +6,8 @@ import { PublicModule } from './public/public.module';
 import {AngularImportsModule} from './angular-imports/angular-imports.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
 import { CabeceraComponent } from './shared/cabecera/cabecera.component';
 import { PieComponent } from './shared/pie/pie.component';
-
-
-const routes: Routes = [
- { path: ''
-, redirectTo: '/home', pathMatch: 'full' } 
-]; 
-
 
 @NgModule({
   declarations: [
@@ -25,12 +17,11 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-	AngularImportsModule,
-	BrowserAnimationsModule,
-	PublicModule,
-	GestionModule,
-	RouterModule.forRoot(routes) ,
+    AngularImportsModule,
+	  BrowserAnimationsModule,
+    GestionModule,
+    PublicModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

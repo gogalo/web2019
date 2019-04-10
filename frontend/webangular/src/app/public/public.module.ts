@@ -6,35 +6,38 @@ import { LogoutComponent } from './logout/logout.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { PublicacionesComponent } from './publicaciones/publicaciones.component';
+import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
 
 const publicRoutes: Routes = [
   { path: '',  component: HomeComponent },
   { path: 'login',  component: LoginComponent },
   { path: 'logout',  component: LogoutComponent },
   { path: 'registro',  component: RegistroComponent },
-  { path: 'publicaciones', component: PublicacionesComponent }
+  { path: 'publicaciones', component: PublicacionesComponent },
+    { path: '**', component: PageNotfoundComponent }
 ];
 
 @NgModule({
-  declarations: [ 
-  PublicacionesComponent,
+  declarations: [
+    PublicacionesComponent,
     HomeComponent,
     LoginComponent,
     RegistroComponent,
     LogoutComponent,
+    PageNotfoundComponent
 	],
   imports: [
     CommonModule,
-   
-	RouterModule.forChild(publicRoutes)
+    RouterModule.forChild(publicRoutes)
   ],
    exports: [
-    RouterModule,
-	 PublicacionesComponent,
-    HomeComponent,
-    LoginComponent,
-    RegistroComponent,
-    LogoutComponent,
+     RouterModule,
+	   PublicacionesComponent,
+     HomeComponent,
+     LoginComponent,
+     RegistroComponent,
+     LogoutComponent,
   ]
 })
+
 export class PublicModule { }

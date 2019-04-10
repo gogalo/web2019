@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+//import { PageNotFoundComponent } from '../public/page-notfound/page-notfound';
 
 const routes: Routes = [
-{path: '', loadChildren: './public/public.module#PublicModule'},
-{path: 'gestion', loadChildren: './gestion/gestion.module#GestionModule'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [
+    //PageNotFoundComponent
+  ],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
+
 export class AppRoutingModule { }
