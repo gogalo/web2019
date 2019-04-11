@@ -8,6 +8,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
 import {AngularImportsModule} from '../angular-imports/angular-imports.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const publicRoutes: Routes = [
   { path: '',  component: HomeComponent },
@@ -30,6 +31,7 @@ const publicRoutes: Routes = [
   imports: [
     CommonModule,
 	AngularImportsModule,
+	BrowserAnimationsModule,
     RouterModule.forChild(publicRoutes)
   ],
    exports: [
