@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
+import {AngularImportsModule} from '../angular-imports/angular-imports.module';
 
 const publicRoutes: Routes = [
   { path: '',  component: HomeComponent },
@@ -28,6 +29,7 @@ const publicRoutes: Routes = [
 	],
   imports: [
     CommonModule,
+	AngularImportsModule,
     RouterModule.forChild(publicRoutes)
   ],
    exports: [
