@@ -23,7 +23,8 @@ var loginController = {
 
             // No se ha encontrado el usuario con ese username
             if (!usuario) {
-                return res.status(400).json({
+              //console.log("User not found");
+                return res.status(200).json({
                     success: false,
                     error: "Credenciales no validas"
                 });
@@ -31,7 +32,8 @@ var loginController = {
 
             // No coincide la contraseña
             if (!bcrypt.compareSync(data.password, usuario.password)) {
-                return res.status(400).json({
+              //console.log("Password incorrect");
+                return res.status(200).json({
                     success: false,
                     error: "Credenciales no validas"
                 });
@@ -39,7 +41,8 @@ var loginController = {
 
             // el usuario NO está activo
             if (!usuario.activo) {
-              return res.status(400).json({
+              //console.log("User inactive");
+              return res.status(200).json({
                   success: false,
                   error: "Credenciales no validas"
               });

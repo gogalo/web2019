@@ -14,16 +14,16 @@ import {
 
 @NgModule({
     imports: [
-	CommonModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatIconModule,
-        MatCardModule,
-        MatSidenavModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatTooltipModule,
-        MatToolbarModule,
+	     CommonModule,
+       MatButtonModule,
+       MatMenuModule,
+       MatIconModule,
+       MatCardModule,
+       MatSidenavModule,
+       MatFormFieldModule,
+       MatInputModule,
+       MatTooltipModule,
+       MatToolbarModule,
     ],
     exports: [
         MatButtonModule,
@@ -34,7 +34,7 @@ import {
         MatFormFieldModule,
         MatInputModule,
         MatTooltipModule,
-        MatToolbarModule
+        MatToolbarModule,
     ]
 })
 export class AngularImportsModule { }
