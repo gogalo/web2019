@@ -23,6 +23,11 @@ import { PieComponent } from './shared/pie/pie.component';
     PublicModule,
     AppRoutingModule
   ],
+  exports:[
+  	AppComponent,
+    CabeceraComponent,
+    PieComponent
+  ]
   providers: [],
   bootstrap: [AppComponent]
 })

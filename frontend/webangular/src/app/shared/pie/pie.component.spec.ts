@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {AngularImportsModule} from '../../angular-imports/angular-imports.module';
+import { RouterModule,Router } from '@angular/router';
 import { PieComponent } from './pie.component';
 
 describe('PieComponent', () => {
@@ -8,6 +9,7 @@ describe('PieComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+	  imports: [AngularImportsModule,RouterModule],
       declarations: [ PieComponent ]
     })
     .compileComponents();
