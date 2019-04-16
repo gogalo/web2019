@@ -1,13 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
-import { LogoutComponent } from './logout/logout.component';
-import { LoginComponent } from './login/login.component';
-import { RegistroComponent } from './registro/registro.component';
-import { PublicacionesComponent } from './publicaciones/publicaciones.component';
-import { PageNotfoundComponent } from './page-notfound/page-notfound.component';
-import {AngularImportsModule} from '../angular-imports/angular-imports.module';
+import { AngularImportsModule } from '../angular-imports/angular-imports.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -43,8 +37,8 @@ const publicRoutes: Routes = [
 	],
   imports: [
     CommonModule,
-	AngularImportsModule,
-	BrowserAnimationsModule,
+	  AngularImportsModule,
+	  BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
