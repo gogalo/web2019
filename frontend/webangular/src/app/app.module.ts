@@ -18,7 +18,7 @@ import { PieComponent } from './shared/pie/pie.component';
   imports: [
     BrowserModule,
     AngularImportsModule,
-	  BrowserAnimationsModule,
+	BrowserAnimationsModule,
     GestionModule,
     PublicModule,
     AppRoutingModule
