@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RoutesService } from '../../services/routes.service';
+import { PUBLIC_RUTAS } from '../../public/public.routes';
 
 @Component({
   selector: 'app-pie',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PieComponent implements OnInit {
 
-  constructor() { }
+  public routesNamed: any;
 
-  ngOnInit() {
+  constructor(private routesService: RoutesService) {
+    this.routesNamed = routesService.getRoutesNamedData(PUBLIC_RUTAS);
   }
+
+  ngOnInit() {}
 
 }
