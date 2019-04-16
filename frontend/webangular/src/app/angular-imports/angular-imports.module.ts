@@ -9,21 +9,23 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
 } from '@angular/material';
 
 @NgModule({
     imports: [
-	CommonModule,
-        MatButtonModule,
-        MatMenuModule,
-        MatIconModule,
-        MatCardModule,
-        MatSidenavModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatTooltipModule,
-        MatToolbarModule,
+	     CommonModule,
+       MatButtonModule,
+       MatMenuModule,
+       MatIconModule,
+       MatCardModule,
+       MatSidenavModule,
+       MatFormFieldModule,
+       MatInputModule,
+       MatTooltipModule,
+       MatToolbarModule,
+       MatDialogModule
     ],
     exports: [
         MatButtonModule,
@@ -34,7 +36,8 @@ import {
         MatFormFieldModule,
         MatInputModule,
         MatTooltipModule,
-        MatToolbarModule
+        MatToolbarModule,
+        MatDialogModule
     ]
 })
 export class AngularImportsModule { }

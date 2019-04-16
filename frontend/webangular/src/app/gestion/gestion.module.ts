@@ -6,6 +6,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PostsComponent } from './posts/posts.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AngularImportsModule} from '../angular-imports/angular-imports.module';
+import {FormsModule} from '@angular/forms';
+
 const gestionRoutes: Routes = [
   { path: 'gestion', children:  GESTION_RUTAS}
 ];
@@ -18,7 +20,8 @@ const gestionRoutes: Routes = [
   imports: [
     CommonModule,
 	 AngularImportsModule,
-	  BrowserAnimationsModule,
+	 BrowserAnimationsModule,
+     FormsModule,
     RouterModule.forChild(gestionRoutes)
   ],
    exports: [
