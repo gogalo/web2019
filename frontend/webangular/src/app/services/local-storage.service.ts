@@ -7,7 +7,7 @@ export class LocalStorageService {
 
   constructor() { }
 
-  set(key: string, value: string) {
+  set(key: string, value: any) {
     //if (typeof value == 'object' || typeof value == 'array') {
         value = JSON.stringify(value);
     //}
