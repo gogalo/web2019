@@ -2,7 +2,14 @@ import { Injectable } from '@angular/core';
 import { Login } from '../models/login';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+import { LocalStorageService } from '../../services/local-storage.service';
+
+interface LoginResponse {
+  success: string;
+  data: any;
+  access_token: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -17,28 +24,35 @@ export class LoginService {
     })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private localSt: LocalStorageService) {
     this.loginUrl = "http://localhost:3000/api/v1/login";
-
   }
 
-  login(login: Login): Observable<any> {
+  login(login: Login) {
 
-    return this.http.post<Login>(this.loginUrl, login, this.httpOptions)
-      .pipe(
-        catchError(this.handleError('login',[]))
-      );
-  }
+    return this.http.post<LoginResponse>(this.loginUrl, login, this.httpOptions)
+    .pipe(
 
-  private handleError (operation = 'operation', result?) {
-    return (error: any): any[] => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-      // Let the app keep running by returning an empty result.
-      return [];
-    };
+      // map result
+      map( (res) => {
+        if (res.success) {
+          let data = res.data;
+          let sessionData = {
+            id: data._id,
+            username: data.username,
+            role: data.permisos,
+            access_jwt: res.access_token
+          }
+
+          this.localSt.set('sessionData', sessionData);
+        }
+        return res;
+      }),
+      // error
+      catchError(err => {
+        return throwError(err.error);
+      })
+    );
   }
 
 }
