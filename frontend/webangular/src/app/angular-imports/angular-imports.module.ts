@@ -11,11 +11,11 @@ import {
     MatTooltipModule,
     MatToolbarModule,
     MatDialogModule
-} from '@angular/material';
+		} from '@angular/material';
 
 @NgModule({
     imports: [
-	     CommonModule,
+	   CommonModule,
        MatButtonModule,
        MatMenuModule,
        MatIconModule,
@@ -26,7 +26,7 @@ import {
        MatTooltipModule,
        MatToolbarModule,
        MatDialogModule
-    ],
+	   			],
     exports: [
         MatButtonModule,
         MatMenuModule,
@@ -38,6 +38,6 @@ import {
         MatTooltipModule,
         MatToolbarModule,
         MatDialogModule
-    ]
-})
+    		]
+				})
 export class AngularImportsModule { }

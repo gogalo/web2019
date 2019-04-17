@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {AngularImportsModule} from '../../angular-imports/angular-imports.module';
+import { RouterModule } from '@angular/router';
+ import { RouterTestingModule } from '@angular/router/testing';
 import { CabeceraComponent } from './cabecera.component';
 
 describe('CabeceraComponent', () => {
@@ -8,7 +10,8 @@ describe('CabeceraComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CabeceraComponent ]
+	  imports: [AngularImportsModule,RouterModule,RouterTestingModule],
+      declarations: [ CabeceraComponent ],
     })
     .compileComponents();
   }));
