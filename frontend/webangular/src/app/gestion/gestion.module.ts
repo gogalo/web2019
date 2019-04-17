@@ -7,6 +7,7 @@ import { PostsComponent } from './posts/posts.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AngularImportsModule} from '../angular-imports/angular-imports.module';
 import {FormsModule} from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const gestionRoutes: Routes = [
   { path: 'gestion', children:  GESTION_RUTAS}
@@ -15,7 +16,8 @@ const gestionRoutes: Routes = [
 @NgModule({
   declarations: [
   PostsComponent,
-  UsuariosComponent
+  UsuariosComponent,
+  DashboardComponent
 ],
   imports: [
     CommonModule,

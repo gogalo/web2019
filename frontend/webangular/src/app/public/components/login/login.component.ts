@@ -65,9 +65,6 @@ export class LoginComponent implements OnInit {
     );
   }
 
-
-
-
   /*onChanges() {
     this.formGroup.valueChanges.subscribe(val => {
       console.log(this.formGroup, val);

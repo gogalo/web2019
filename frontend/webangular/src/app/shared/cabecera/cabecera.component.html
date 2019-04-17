@@ -11,6 +11,17 @@
 </mat-menu></mat-toolbar></mat-drawer-content>
 </mat-drawer-container>
 
+<mat-toolbar>
+  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item><a [routerLink]="routesNamed['publicHome']" routerLinkActive="active">Inicio</a> </button>
+    <button mat-menu-item><a [routerLink]="routesNamed['publicLogin']" routerLinkActive="active">Log in</a></button>
+  </mat-menu>
+</mat-toolbar>
 
-
-
+<mat-toolbar>
+  <mat-icon class="material-icons">settings</mat-icon>
+    <button mat-button><a [routerLink]="routesNamed['gestionDashboard']" routerLinkActive="active">Dashboard</a></button>
+    <button mat-button><a [routerLink]="routesNamed['gestionUsuarios']" routerLinkActive="active">Users</a></button>
+    <button mat-button><a [routerLink]="routesNamed['gestionPosts']" routerLinkActive="active">Publicaciones</a></button>
+</mat-toolbar>

@@ -1,8 +1,9 @@
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { PostsComponent } from './posts/posts.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const GESTION_RUTAS=[
-  { path: '', component: UsuariosComponent },
-  { path: 'posts',  component: PostsComponent },
-  { path: 'users', component: UsuariosComponent }
+  { path: '', component: DashboardComponent, name: 'gestionDashboard'},
+  { path: 'posts',  component: PostsComponent , name: 'gestionPosts'},
+  { path: 'users', component: UsuariosComponent, name: 'gestionUsuarios'}
 ];

@@ -1,3 +1,74 @@
-<p>
-  ¡Regístrate!
-</p>
+
+<mat-card>
+
+  <mat-card-title>
+    Registro
+  </mat-card-title>
+
+  <mat-card-content>
+    <form [formGroup]="formGroup" (submit)="onSubmit()">
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          name="email"
+          formControlName="email"
+          type="text"
+          matInput
+          placeholder="Introduce tu email"
+        >
+        <mat-error *ngIf="!(f.email.valid && f.email.pristine) && f.email.errors && f.email.errors.required">El email es obligatorio</mat-error>
+        <mat-error *ngIf="!(f.email.valid && f.email.pristine) && f.email.errors && f.email.errors.email">El email no es correcto</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Usuario</mat-label>
+        <input
+          name="username"
+          formControlName="username"
+          type="text"
+          matInput
+          placeholder="Introduce tu usuario"
+        >
+        <mat-error *ngIf="!(f.username.valid && f.username.pristine) && f.username.errors && f.username.errors.required">El usuario es obligatorio</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Contraseña</mat-label>
+        <input
+          name="password"
+          formControlName="password"
+          type="password"
+          matInput
+          placeholder="Introduce tu contraseña"
+        >
+        <mat-error *ngIf="!(f.password.valid && f.password.pristine) && f.password.errors && f.password.errors.required">La contraseña es obligatoria</mat-error>
+        <mat-error *ngIf="!(f.password.valid && f.password.pristine) && f.password.errors && f.password.errors.minlength">Mínimo {{f.password.errors.minlength.requiredLength}} caracteres</mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Repetir Contraseña</mat-label>
+        <input
+          name="confirmPassword"
+          formControlName="confirmPassword"
+          type="password"
+          matInput
+          placeholder="Repite la contraseña"
+        >
+        <mat-error *ngIf="!(f.confirmPassword.valid && f.confirmPassword.pristine) && f.confirmPassword.errors && f.confirmPassword.errors.required">La contraseña es obligatoria</mat-error>
+        <mat-error *ngIf="!(f.confirmPassword.valid && f.confirmPassword.pristine) && f.confirmPassword.errors && f.confirmPassword.errors.minlength">Mínimo {{f.confirmPassword.errors.minlength.requiredLength}} caracteres</mat-error>
+
+      </mat-form-field>
+
+      <button
+        mat-button
+        [disabled]="formGroup.invalid"
+      >Registrarme</button>
+
+    </form>
+  </mat-card-content>
+
+  <mat-card-footer></mat-card-footer>
+
+</mat-card>
