@@ -27,7 +27,7 @@ import { PieComponent } from './shared/pie/pie.component';
   	AppComponent,
     CabeceraComponent,
     PieComponent
-  ]
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
