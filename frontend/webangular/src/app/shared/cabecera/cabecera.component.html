@@ -1,27 +1,16 @@
+
+
+
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened><mat-toolbar>toolbar login y <a routerLink="/gestion/users" routerLinkActive="active">. perfil</a></mat-toolbar></mat-drawer>
   <mat-drawer-content><mat-toolbar>
 <button mat-button [matMenuTriggerFor]="menu">Menu</button>
 <mat-menu #menu="matMenu">
- <button mat-menu-item><a routerLink="/" routerLinkActive="active"><mat-icon>home</mat-icon>
+<button mat-menu-item><a routerLink="/" routerLinkActive="active"><mat-icon>home</mat-icon>
 </a> </button>
   <button mat-menu-item><a [routerLink]="routesNamed['publicLogin']" routerLinkActive="active">Log in</a></button>
   <button mat-menu-item><a routerLink="/gestion/users" routerLinkActive="active">Users</a></button>
-  <button mat-menu-item><a routerLink="/registro" routerLinkActive="active">¡Regístrate!</a></button>
-</mat-menu></mat-toolbar></mat-drawer-content>
+	<button mat-menu-item><a routerLink="/registro" routerLinkActive="active">¡Regístrate!</a></button>
+	</mat-menu></mat-toolbar></mat-drawer-content>
 </mat-drawer-container>
 
-<mat-toolbar>
-  <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item><a [routerLink]="routesNamed['publicHome']" routerLinkActive="active">Inicio</a> </button>
-    <button mat-menu-item><a [routerLink]="routesNamed['publicLogin']" routerLinkActive="active">Log in</a></button>
-  </mat-menu>
-</mat-toolbar>
-
-<mat-toolbar>
-  <mat-icon class="material-icons">settings</mat-icon>
-    <button mat-button><a [routerLink]="routesNamed['gestionDashboard']" routerLinkActive="active">Dashboard</a></button>
-    <button mat-button><a [routerLink]="routesNamed['gestionUsuarios']" routerLinkActive="active">Users</a></button>
-    <button mat-button><a [routerLink]="routesNamed['gestionPosts']" routerLinkActive="active">Publicaciones</a></button>
-</mat-toolbar>
