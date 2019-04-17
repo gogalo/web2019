@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { RoutesService } from '../../services/routes.service';
-import { PUBLIC_RUTAS } from '../../public/public.routes';
 
 @Component({
   selector: 'app-cabecera',
@@ -9,10 +8,17 @@ import { PUBLIC_RUTAS } from '../../public/public.routes';
 })
 export class CabeceraComponent implements OnInit {
 
-  public routesNamed: any;
+  //public publicRoutes: any[];
+  //public gestionRoutes: any[];
+  public routesNamed: any[];
 
   constructor(private routesService: RoutesService) {
-    this.routesNamed = routesService.getRoutesNamedData(PUBLIC_RUTAS);
+    //this.publicRoutes = this.routesService.getRoutesNamedData(PUBLIC_RUTAS);
+    //this.gestionRoutes = this.routesService.getRoutesNamedData(GESTION_RUTAS);
+
+    //this.routesNamed = [];
+    this.routesNamed = this.routesService.getRoutesNamedData();
+    console.log(this.routesNamed);
   }
 
   ngOnInit() {}
